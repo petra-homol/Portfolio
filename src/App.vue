@@ -80,18 +80,16 @@ export default {
 }
 
 header {
+  position: fixed;
   height: 8vh;
   width: 100%;
   background: rgb(126,178,66);
-  background: linear-gradient(180deg, rgba(126,178,66,1) 0%, rgba(179,213,115,1) 100%);
+  z-index: 100;
+  /* background: linear-gradient(180deg, rgba(126,178,66,1) 0%, rgba(179,213,115,1) 100%); */
 }
 
-/* .logo {
-  display: block;
-  margin: 0 auto 2rem;
-} */
-
 nav {
+  position: fixed;
   width: 100%;
   font-size: 12px;
   text-align: center;
@@ -99,7 +97,10 @@ nav {
   justify-content: center;
   align-items: center;
   padding-top: 1rem;
+  
 }
+
+
 
 nav a.router-link-exact-active {
   color: var(--color-text);
