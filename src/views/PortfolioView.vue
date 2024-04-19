@@ -11,40 +11,18 @@
           <button class="btn-category" @click="selectedCategory = 'ILLUSTRATION'"> DRAWING </button>
         </div>      
 
-        <div class="card-container">
-
-          <div class="flex justify-center items-center">
-            <div class="row">
-              <div v-for="portfolioItem in firstRow" :key="portfolioItem" class="card md:w-1/2 justify-center items-center">
+        <div class="cards grid justify-center grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
+            
+              <div v-for="portfolioItem in filteredPortfolioItems" :key="portfolioItem" class="card md:w-1/2 justify-center items-center">
                 
-                <h3>{{ portfolioItem.title }}</h3>
-              
-                <div class="category">
-                  <p :class="portfolioItem.category">{{ portfolioItem.category }}</p>
-                </div> 
-
-                <div class="flex justify-center items-center">
-                  <img :src="portfolioItem.image" alt="">
-                </div> 
-                
-                <button>            
-                  <router-link :to="`/portfoliodetail/${portfolioItem.id}`">
-                      Show more 
-                  </router-link>
-                </button>
-
-              </div>
-            </div>
-
-            <div class="row justify-center items-center">
-              <div v-for="portfolioItem in secondRow" :key="portfolioItem" class="card md:w-1/2 justify-center items-center">
-                
-                <h3>{{ portfolioItem.title }}</h3>
-              
-                <div class="category">
+                <div class="label">
                   <p :class="portfolioItem.category">{{ portfolioItem.category }}</p>
                 </div>
-                    
+
+                <h3>{{ portfolioItem.title }}</h3>
+              
+                 
+
                 <div class="flex justify-center items-center">
                   <img :src="portfolioItem.image" alt="">
                 </div> 
@@ -54,11 +32,9 @@
                       Show more 
                   </router-link>
                 </button>
-
-              </div>
+              
             </div>
-          </div>      
-               
+
         </div>
       </div>
          
@@ -84,9 +60,6 @@
       return portfolioItems.value.filter(item => item.category == selectedCategory.value)
     }
   })
-
-  const firstRow = computed(() => filteredPortfolioItems.value.slice(0, 4))
-  const secondRow = computed(() => filteredPortfolioItems.value.slice(4, 8))
   
   </script>
   
@@ -95,28 +68,25 @@
   .row-all{
     background-color: #b3d573;
     height: auto;
-    min-height: 100vh;
+    min-height: 80vh;
     width: 100%;
   }
 
-  .card-container {
-  margin-top: 100px; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-around; 
-  padding: 20px;
-}
+  .cards{
+    margin-top: 150px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
   .card {
     color:#452c12;
     background-color: #fbf9d9;
     border-radius: 5px;
+    padding: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 500px;
-    height: fit-content;
-    margin: 50px 20px 20px 20px;
+    width: 450px;
+    height: auto;
+    margin: 15px;
   }
 
   button{
@@ -127,11 +97,11 @@
     padding: 5px 15px;
     border-radius: 20px;
     width: fit-content;
+    margin-top: 10px;
   }
   
   .btn-category{
     box-shadow: 0 4px 6px #fbf9d9; 
-
   }
 
   .btn-category:hover {
@@ -146,16 +116,35 @@
     justify-content: center;
     justify-self: center;
   }
-
-
-  .category{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 5px;
-    text-decoration: underline #b3d573 5px;
+  
+  .label{
+    position: relative;
+    border-left: 5px solid #b3d573;
+    padding-left: 5px;
     font-weight: bold;
   }
-  
+
+  @media screen and (max-width: 768px){
+    .card {
+      position: relative;
+      color:#452c12;
+      background-color: #fbf9d9;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      height: fit-content;
+      top: 40px;  
+    }
+    
+    .category{
+      display: none;
+    }
+
+    .click {
+    display: block;
+  }
+
+} 
   
   </style>

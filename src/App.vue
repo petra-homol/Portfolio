@@ -4,7 +4,7 @@
     <div>
 
       <header>
-      <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
+      
         <nav>
           <RouterLink to="/about" active-class="active-link">ABOUT ME</RouterLink>
           <RouterLink to="/">
@@ -12,13 +12,16 @@
           </RouterLink>        
           <RouterLink to="/portfolio" active-class="active-link">PROJECTS</RouterLink>
         </nav>
+
       </header>
 
       <div class="content">
-        <RouterView />
+        <transition name="slide-fade">
+          <RouterView />
+        </transition>
       </div>
 
-      <div class="row-footer grid grid-cols-3 gap-4 flex justify-center items-center">
+      <div class="row-footer grid md:grid-cols-3 flex flex-col md:flex-row justify-center items-center">
         
         <a href="mailto:petra.homolova26@gmail.com">
           <div class="col-span-1 flex justify-center items-center">
@@ -56,9 +59,7 @@
 
     </div> 
       
-  </div>
- 
-  
+  </div>  
 
 </template>
 
@@ -75,6 +76,24 @@ export default {
 
 <style scoped>
 
+.slide-fade-enter-active, .slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-fade-enter-from, .slide-fade-leave-to {
+  opacity: 0;
+  transform:translateY( 20px)
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
 .font-quicksand {
   font-family: 'quicksand';
 }
@@ -85,7 +104,6 @@ header {
   width: 100%;
   background: rgb(126,178,66);
   z-index: 100;
-  /* background: linear-gradient(180deg, rgba(126,178,66,1) 0%, rgba(179,213,115,1) 100%); */
 }
 
 nav {
@@ -97,10 +115,7 @@ nav {
   justify-content: center;
   align-items: center;
   padding-top: 1rem;
-  
 }
-
-
 
 nav a.router-link-exact-active {
   color: var(--color-text);
@@ -131,32 +146,16 @@ nav a:first-of-type {
 .row-footer{
   background-color: #7eb242;
   height: 20vh;
+  width: 100%;
 }
 
-/* @media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+@media (max-width: 770px) {
+    .row-footer {
+      padding: 10px 0 0 0;
+      margin: 0;
+      gap: 0;
+      height: fit-content;
+    }
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-} */
 </style>

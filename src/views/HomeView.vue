@@ -6,8 +6,8 @@
       <div class="absolute top-14  w-full">
         <img src="@/assets/frame-top.svg" alt="">
       </div>
-      
-      <div class="md:w-1/3 flex justify-center items-center">
+
+      <div class="md:w-1/3 flex justify-center items-center svg">
        
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="auto" height="300" viewBox="0 0 415.126 547.077">
           <defs>
@@ -35,7 +35,11 @@
     </div>
           
     <div class="row-projects">
+
       <div v-for="portfolioItem in filteredPortfolioItems" :key="portfolioItem" class="card-home">
+
+        
+
         <h2>{{ portfolioItem.title }}</h2>
 
         <div class="category">
@@ -86,11 +90,6 @@ const filteredPortfolioItems = computed(() => {
   margin-bottom: 1rem;
 }
 
-.hp{
-  height: 30vh;
-  width: auto;
-}
-
 .path {
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
@@ -105,6 +104,8 @@ const filteredPortfolioItems = computed(() => {
 
 .row-projects{
   background-color: #b3d573;
+  background-position: center; 
+  width: 100%;
   padding: 5rem;
 }
 
@@ -120,30 +121,17 @@ const filteredPortfolioItems = computed(() => {
   position: sticky;
   margin-bottom: 70px;
   top: 100px;
-  animation: fade-in linear;
-  animation-timeline: view();
-  animation-range-start: cover;
-  animation-range-end: cover;
 }
 
-// @keyframes fade-in 
-// {
-//   0% { 
-//     opacity: 0;
-//     transform: scale(0.5);
-//   }
-  
-//   70% { 
-//     opacity: 1;
-//     transform: scale(1); 
-
-//   }
-  
-//   100% { 
-//     opacity: 1;
-//     transform: scale(1);
-//   }
-// }
+button{
+  border: 2px solid #452c12;
+  box-shadow: 0 4px 6px #b3d573; 
+  color: #452c12;
+  margin: 10px;
+  padding: 5px 15px;
+  border-radius: 20px;
+  width: fit-content;
+}
 
 .but-card{
   position: absolute;
@@ -158,6 +146,34 @@ const filteredPortfolioItems = computed(() => {
     padding: 5px;
     text-decoration: underline #b3d573 5px;
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 768px) {
+    .card-home {
+      position: relative;
+      color:#452c12;
+      background-color: #fbf9d9;
+      padding: 1rem;
+      margin: auto;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      height: 250px;
+      margin-bottom: 50px;
+      top: 0px;      
+    }
+    h2{
+      font-size: 15px;
+    }
+    h1{
+      font-size: 30px;
+    }
+    .svg{
+      display: none;
+    }
+    .category{
+      display: none;
+    }
   }
 
 </style>
